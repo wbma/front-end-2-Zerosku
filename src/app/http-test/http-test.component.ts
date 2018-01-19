@@ -18,7 +18,10 @@ export class HttpTestComponent implements OnInit {
   }
 
  getJSON() {
-    this.http.get('assets/package.json').subscribe((data) => {
+    interface Myinterface {
+      license: string;
+    }
+    this.http.get<Myinterface>('assets/package.json').subscribe((data) => {
       console.log(data);
       this.someData = data.license;
     });
@@ -30,7 +33,6 @@ export class HttpTestComponent implements OnInit {
       this.imgUrl = this.imageFolder + data[0].filename;
     });
  }
-
 
   ngOnInit() {
     this.getJSON();
